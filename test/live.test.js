@@ -13,7 +13,7 @@ const CONFIG = {
   apiKeyEnv: "OPENTCS_API_KEY",
   timeoutMs: 10000
 };
-const API_KEY = process.env.OPENTCS_API_KEY ?? "dsh-poc-key-2026";
+const API_KEY = process.env.OPENTCS_API_KEY ?? "";
 
 test("live: kernel info returns version", { skip: !ENABLED }, async () => {
   const client = createClient(CONFIG, { apiKey: API_KEY });
