@@ -1,0 +1,17 @@
+# @dadi/opentcs bundle patch
+#
+# Inserts the plugin's host service row into the profile's Cordis plugin tree.
+# Installed via the official CLI:
+#   dsh plugin --profile web add @dadi/opentcs@<version>
+# (delivery channel: private GitHub repo -> git dependency / GitHub Packages)
+#
+# Row config is overridable per profile by editing the inserted row below or
+# by a later patch layer. `apiKeyEnv` is a *reference* to an environment
+# variable backed by DSH credentials — never put a plaintext key here.
+- insert:
+    - id: opentcs
+      name: '@dadi/opentcs'
+      config:
+        kernelUrl: http://localhost:55200/v1
+        apiKeyEnv: OPENTCS_API_KEY
+        timeoutMs: 10000
