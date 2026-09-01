@@ -36,13 +36,17 @@ setx OPENTCS_API_KEY "你的内核 accessKey"
 内核侧：在 `opentcs-kernel/config/opentcs-kernel.properties` 中设置
 `servicewebapi.accessKey = <key>`，然后重启内核。
 
-## 工具清单（骨架 v0.0.1）
+## 工具清单（v0.1.0）
 
 | 工具 | 说明 |
 |---|---|
 | `opentcs.kernel.info` | 内核版本/定制信息，验证连通性 |
+| `opentcs.vehicles` | 车辆列表与状态（可按 procState 过滤） |
+| `opentcs.order.create` | 创建运输订单（目的地序列 + 可选类型/意向车/期限） |
+| `opentcs.order.cancel` | 撤销运输订单（可选 immediate 立即中止，慎用） |
+| `opentcs.events` | 最近内核运行事件（异常诊断） |
 
-规划（M2）：`opentcs.vehicles` / `opentcs.order.create` / `opentcs.order.cancel` / `opentcs.events`。
+规划（后续）：`opentcs.plant.summary`（布局概览）、`opentcs.order.list`、SSE 实时面板（P3）。
 
 ## 安全
 
@@ -55,7 +59,9 @@ setx OPENTCS_API_KEY "你的内核 accessKey"
 
 ```bash
 pnpm install        # 安装依赖（@deepseek-ai/dsh-tools 等）
-pnpm run smoke      # 模块加载冒烟测试（见 package.json scripts）
+pnpm run smoke      # 模块加载冒烟测试
+pnpm run test       # 单元测试（mock fetch）
+OPENTCS_LIVE_TESTS=1 pnpm run test:live   # 集成测试（需内核在 localhost:55200）
 ```
 
 版本发布：改码 → 升版本 → 打 tag → 推送私有仓库 → 安装机 `dsh plugin add`。

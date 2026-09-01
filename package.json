@@ -1,6 +1,6 @@
 {
   "name": "@dadi/opentcs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "DSH plugin: natural-language control & monitoring for openTCS-based vehicle/AGV fleets (host side). Bridges DSH agent tools to the openTCS kernel REST Web API v1.",
   "type": "module",
   "main": "lib/index.js",
@@ -31,7 +31,9 @@
     }
   },
   "scripts": {
-    "smoke": "node -e \"import('./lib/index.js').then(m => { const ok = m.name === 'opentcs' && typeof m.apply === 'function' && m.Config !== undefined; console.log(ok ? 'smoke OK: name=' + m.name + ' apply=function Config=' + typeof m.Config : 'smoke FAIL'); process.exit(ok ? 0 : 1); })\""
+    "smoke": "node -e \"import('./lib/index.js').then(m => { const ok = m.name === 'opentcs' && typeof m.apply === 'function' && m.Config !== undefined; console.log(ok ? 'smoke OK: name=' + m.name + ' apply=function Config=' + typeof m.Config : 'smoke FAIL'); process.exit(ok ? 0 : 1); })\"",
+    "test": "node --test",
+    "test:live": "node --test test/live.test.js"
   },
   "dependencies": {
     "@deepseek-ai/dsh-credentials": "^0.1.1-rc.2",
