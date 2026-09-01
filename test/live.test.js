@@ -40,6 +40,12 @@ test("live: events returns statusMessages", { skip: !ENABLED }, async () => {
   assert.ok(Array.isArray(events.statusMessages));
 });
 
+test("live: plant model returns an object with name", { skip: !ENABLED }, async () => {
+  const client = createClient(CONFIG, { apiKey: API_KEY });
+  const model = await client.getPlantModel();
+  assert.equal(typeof model.name, "string");
+});
+
 test("live: creating an order on an empty plant model fails with readable error", { skip: !ENABLED }, async () => {
   const client = createClient(CONFIG, { apiKey: API_KEY });
   const name = `TOrder-live-${Date.now()}`;

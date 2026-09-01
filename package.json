@@ -1,6 +1,6 @@
 {
   "name": "@dadi/opentcs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "DSH plugin: natural-language control & monitoring for openTCS-based vehicle/AGV fleets (host side). Bridges DSH agent tools to the openTCS kernel REST Web API v1.",
   "type": "module",
   "main": "lib/index.js",

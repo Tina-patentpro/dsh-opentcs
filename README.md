@@ -36,17 +36,19 @@ setx OPENTCS_API_KEY "你的内核 accessKey"
 内核侧：在 `opentcs-kernel/config/opentcs-kernel.properties` 中设置
 `servicewebapi.accessKey = <key>`，然后重启内核。
 
-## 工具清单（v0.1.0）
+## 工具清单（v0.2.0）
 
-| 工具 | 说明 |
-|---|---|
-| `opentcs.kernel.info` | 内核版本/定制信息，验证连通性 |
-| `opentcs.vehicles` | 车辆列表与状态（可按 procState 过滤） |
-| `opentcs.order.create` | 创建运输订单（目的地序列 + 可选类型/意向车/期限） |
-| `opentcs.order.cancel` | 撤销运输订单（可选 immediate 立即中止，慎用） |
-| `opentcs.events` | 最近内核运行事件（异常诊断） |
+| 工具 | 类型 | 说明 |
+|---|---|---|
+| `opentcs.kernel.info` | 只读 | 内核版本/定制信息，验证连通性 |
+| `opentcs.vehicles` | 只读 | 车辆列表与状态（可按 procState 过滤） |
+| `opentcs.order.list` | 只读 | 运输订单列表（可按 state 过滤） |
+| `opentcs.plant.summary` | 只读 | 厂区布局概览（节点/路径/位置/区块计数 + 位置与车辆清单，下单前确认位置名） |
+| `opentcs.events` | 只读 | 最近内核运行事件（异常诊断） |
+| `opentcs.order.create` | 写 | 创建运输订单（目的地序列 + 可选类型/意向车/期限） |
+| `opentcs.order.cancel` | 写 | 撤销运输订单（可选 immediate 立即中止，慎用） |
 
-规划（后续）：`opentcs.plant.summary`（布局概览）、`opentcs.order.list`、SSE 实时面板（P3）。
+规划（后续）：SSE 实时面板（P3）、`opentcs.plant` 完整布局查询。
 
 ## 安全
 

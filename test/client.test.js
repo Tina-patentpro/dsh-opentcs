@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createClient } from "../lib/client.js";
+import { summarizePlantModel } from "../lib/index.js";
 
 const CONFIG = {
   kernelUrl: "http://kernel.test:55200/v1/",
@@ -100,4 +101,52 @@ test("getEvents passes timeout query", async () => {
   const client = createClient(CONFIG, { fetchImpl: impl });
   await client.getEvents({ timeout: 1000 });
   assert.equal(calls[0].url.searchParams.get("timeout"), "1000");
+});
+
+test("getPlantModel requests the plant model endpoint", async () => {
+  const { impl, calls } = mockFetch(() => fakeResponse({ body: JSON.stringify({ name: "M" }) }));
+  const client = createClient(CONFIG, { fetchImpl: impl });
+  const model = await client.getPlantModel();
+  assert.equal(model.name, "M");
+  assert.equal(calls[0].url.pathname, "/v1/plantModel");
+});
+
+test("summarizePlantModel computes counts and maps locations/vehicles", () => {
+  const model = {
+    name: "Plant A",
+    points: [{ name: "P1" }, { name: "P2" }],
+    paths: [{ name: "Pa" }],
+    locations: [
+      { name: "Storage 01", type: "StorageType" },
+      { name: "Bay 02", type: "BayType" }
+    ],
+    blocks: [{ name: "B1" }],
+    vehicles: [{ name: "V1", state: "IDLE" }]
+  };
+  assert.deepEqual(summarizePlantModel(model), {
+    name: "Plant A",
+    pointCount: 2,
+    pathCount: 1,
+    locationCount: 2,
+    blockCount: 1,
+    vehicleCount: 1,
+    locations: [
+      { name: "Storage 01", type: "StorageType" },
+      { name: "Bay 02", type: "BayType" }
+    ],
+    vehicles: [{ name: "V1", state: "IDLE" }]
+  });
+});
+
+test("summarizePlantModel tolerates missing/unknown fields", () => {
+  assert.deepEqual(summarizePlantModel({ name: "Empty" }), {
+    name: "Empty",
+    pointCount: 0,
+    pathCount: 0,
+    locationCount: 0,
+    blockCount: 0,
+    vehicleCount: 0,
+    locations: [],
+    vehicles: []
+  });
 });
