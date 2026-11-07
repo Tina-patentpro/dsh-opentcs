@@ -8,10 +8,10 @@ AI 代理通过 DSH 对话直接操作 openTCS 调度内核（REST Web API v1）
 > 架构前提见 `../docs/plans/2026-09-01-opentcs-dsh-concept.md`，
 > 插件方案见 `../docs/plans/2026-09-01-dsh-opentcs-plugin-skeleton.md`。
 
-## 安装（发布通道：GitHub 私有仓库）
+## 安装（发布通道：GitHub 公开仓库）
 
 ```bash
-# git 依赖方式（需安装机可访问私有仓库）
+# git 依赖方式（公开仓库，可直接访问）
 dsh plugin --profile web add "git+https://github.com/Tina-patentpro/dsh-opentcs.git#v0.0.1"
 
 # 或 GitHub Packages npm 方式（需配置 PAT）
@@ -66,4 +66,4 @@ pnpm run test       # 单元测试（mock fetch）
 OPENTCS_LIVE_TESTS=1 pnpm run test:live   # 集成测试（需内核在 localhost:55200）
 ```
 
-版本发布：改码 → 升版本 → 打 tag → 推送私有仓库 → 安装机 `dsh plugin add`。
+版本发布：改码 → 升版本 → 打 tag → 推送公开仓库 → 安装机 `dsh plugin add`。
