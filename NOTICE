@@ -1,0 +1,35 @@
+dsh-opentcs
+Copyright 2026 OasisIntWrite
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+---
+
+权利主体说明（中文，与上文一致）
+
+- 权利主体：OasisIntWrite。
+- 仓库根 LICENSE 为 Apache License 2.0 标准全文；其附录中的
+  "Copyright [yyyy] [name of copyright owner]" 是许可证模板占位文本，
+  版权归属以本 NOTICE 为准。
+- 本声明自 2026-11-07 起适用，不追溯授权此日期之前尚无 LICENSE 的历史提交。
+- 第三方组件保留各自原有许可，见仓库内相应 LICENSE / LICENSE.txt / NOTICE 文件。
+
+第三方关系说明（openTCS）
+
+本仓库是独立编写的宿主侧插件，通过 openTCS 内核的 REST Web API v1 与之交互，
+不包含、复制或改写 openTCS 的源代码或文档，也不再分发其制品。
+openTCS 是 Fraunhofer IML 维护的独立项目；依据其官方 README 的 "Licensing" 段
+与 opentcs.de 下载页，其许可为：原始源代码 MIT，文档与资源 CC BY 4.0，
+部分配置/数据 CC0 1.0，部分第三方资产 Apache-2.0 / OFL-1.1。
+因此本仓库不触发 MIT 的署名与再分发义务；Apache-2.0 适用于本仓库自有代码。
+openTCS 名称及商标归其各自权利人所有，本仓库不主张任何关联或背书。
